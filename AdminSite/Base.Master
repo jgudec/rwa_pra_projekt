@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Base.master.cs" Inherits="AdminSite.Base" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+    <script src="/Content/materialize/js/materialize.min.js"></script>
+    <link href="/Content/materialize/css/materialize.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> 
+    <link href="/Content/CustCss/Base.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="wrapper">
+            <header>
+                <nav class="blue">
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href='<%=ResolveUrl("~/MainMenu.aspx") %>'>Glavni Izbornik</a></li>
+                        <li><a href='<%=ResolveUrl("~/Pages/Korisnici/ViewKorisnici.aspx") %>'>Korisnici</a></li>
+                        <li><a href="#">Kombinacije</a></li>
+                        <li><a href='<%=ResolveUrl("~/Pages/Namirnice/ViewNamirnice.aspx") %>'>Namirnice</a></li>
+                        <li><a href='<%=ResolveUrl("~/Pages/MjJedinice/ViewMjJedinice.aspx") %>'>Mjerne jedinice</a></li>
+                        <li><a href='<%=ResolveUrl("~/Pages/Obroci/ViewObroci.aspx") %>'>Obroci</a></li>
+                    </ul>
+                </div>
+            </nav>
+            </header>
+            <div class="center ">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

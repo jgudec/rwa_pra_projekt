@@ -109,3 +109,23 @@ create table Omjer
 	KombinacijaID int foreign key references Kombinacija(IDKombinacija)
 )
 go
+
+insert into Korisnik(KorisnickoIme,Pwd) values('admin','admin')
+go
+
+create proc ValidateAdmin
+ @user nvarchar(256), @pass nvarchar(max)
+as
+begin
+	if exists(select * from Korisnik where KorisnickoIme='admin'
+				and Pwd = @pass) and @user = 'admin'
+		begin
+			select 1
+		end
+	else
+		begin
+			select 0
+		end
+
+end
+go

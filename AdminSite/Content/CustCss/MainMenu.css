@@ -1,0 +1,51 @@
+﻿.action-items {
+    justify-self: center;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+}
+
+.meh {
+    max-width: 50%;
+    margin: auto;
+}
+
+#welcome {
+    padding-top: 2%
+}
+
+#menu {
+    margin-top: 3%
+}
+
+.buton {
+    margin: 1.5% 5%;
+    width: 20%;
+}
+
+.butonR {
+    margin: 1.5% 15% 0;
+    width: 35%;
+    max-width: 40%
+}
+
+.menu {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.ped {
+    padding-left: 20% !important
+}
+
+.marge {
+    margin-left: 25%;
+    max-width: 25%;
+    width: 25%;
+}
+
+#cust {
+    width: 60%;
+    font-style: oblique;
+}
