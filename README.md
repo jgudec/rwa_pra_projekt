@@ -1,20 +1,12 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+DBFood is a web application split into two sites.
+The first, AdminSite, is created using Web Forms while the PublicSite is made in MVC.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Due to the nature and innate "flaw" of historically tracked changes( simply put commits of progress on Azure ), some components aren't added into the mentioned commits.
+After Visual Studio tells you to sync the packages( and you do so ), the solution won't be able to initialize because the sync was incomplete.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+The following package has to be reinstalled through NuGet Package manager: Microsoft.CodeDom.Providers.DotNetCompilerPlatform
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+After it was reinstalled, the project should initialize properly.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
