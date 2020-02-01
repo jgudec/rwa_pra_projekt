@@ -129,3 +129,13 @@ begin
 
 end
 go
+
+--AdminSite: User screens
+
+insert into Korisnik(KorisnickoIme,Pwd,Ime,Prezime,Email,DOB,Spol,TipDijabetesa,FizickaAktivnost,Visina,Tezina,BMI) values('GlenCoco','qwertz1234','Pero','Periæ','pero.peric@gmail.com','1999-08-15','M',1,2,182,85,25)
+go
+
+create proc LoadKorisnici
+		as
+SELECT * from Korisnik
+go

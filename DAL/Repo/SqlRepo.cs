@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,6 +16,8 @@ namespace DAL.Repo
 
         private static readonly Lazy<SqlRepo> lazy = new Lazy<SqlRepo>(() => new SqlRepo());
         public static SqlRepo Instance { get { return lazy.Value; } }
+
+        
 
         //--------------------------------------------------------------------------
 
@@ -34,6 +37,48 @@ namespace DAL.Repo
                     else return false;
                 }
             }
+        }
+
+        public List<Korisnik> FetchKorisnici()
+        {
+            List<Korisnik> korisnici = new List<Korisnik>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "LoadKorisnici";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                if (dr["KorisnickoIme"].ToString() != "admin")
+                                {
+                                    korisnici.Add(new Korisnik
+                                    {
+                                        IDKorisnik = (int)dr["IDKorisnik"],
+                                        Ime = dr["Ime"].ToString(),
+                                        Prezime = dr["Prezime"].ToString(),
+                                        Spol = dr["Spol"].ToString()[0],
+                                        FizickaAktivnost = (int)dr["FizickaAktivnost"],
+                                        TipDijabetesa = (int)dr["TipDijabetesa"],
+                                        Email = dr["Email"].ToString(),
+                                        Visina = (int)dr["Visina"],
+                                        Tezina = (int)dr["Tezina"],
+                                        KorisnickoIme = dr["KorisnickoIme"].ToString(),
+                                        DOB = DateTime.Parse(dr["DOB"].ToString()),
+                                        BMI = (int)dr["BMI"]
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return korisnici;
         }
     }
 }

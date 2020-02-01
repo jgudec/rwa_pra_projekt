@@ -9,7 +9,7 @@
             <p class="center">Odaberite opciju u glavnom izborniku.</p>
         </div>
         <div class="col-12 col centered ">
-                    <a href="#" class="waves-effect waves-light btn-large blue buton meh">Korisnici</a>
+                    <a href="Pages/Korisnici/ViewKorisnici.aspx" class="waves-effect waves-light btn-large blue buton meh">Korisnici</a>
                     <a href="#" class="waves-effect waves-light btn-large blue buton meh">Kombinacije</a>
                 </div>
         <div class="col-12 col centered ">
