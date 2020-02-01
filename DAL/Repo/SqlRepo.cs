@@ -14,6 +14,8 @@ namespace DAL.Repo
     {
         private string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
+        private TipNamirnice meh = new TipNamirnice();
+
         private static readonly Lazy<SqlRepo> lazy = new Lazy<SqlRepo>(() => new SqlRepo());
         public static SqlRepo Instance { get { return lazy.Value; } }
 
@@ -129,6 +131,7 @@ namespace DAL.Repo
             }
         }
 
+
         public void InsertObrok(object text)
         {
             using (SqlConnection con = new SqlConnection(cs))
@@ -180,6 +183,145 @@ namespace DAL.Repo
                             cmd.CommandText = "DeleteObrok";
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.Add("@idobrok", SqlDbType.VarChar).Value = obrok.IDObrok;
+                            object value = cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        //---------------Namirnice---------------------------------
+
+        public void SetTipNamirnice(TipNamirnice tipNamirnice)
+        {
+            meh = tipNamirnice;
+        }
+
+        public TipNamirnice GetTipNamirnice()
+        {
+            return meh;
+        }
+
+        public List<TipNamirnice> FetchTipoviNamirnica()
+        {
+            List<TipNamirnice> tipoviNamirnica = new List<TipNamirnice>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "LoadTipoviNamirnica";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                tipoviNamirnica.Add(new TipNamirnice
+                                {
+                                    IDTipNamirnice = (int)dr["IDTipNamirnice"],
+                                    Naziv = dr["Naziv"].ToString()
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return tipoviNamirnica;
+        }
+        public List<Namirnica> FetchNamirnice()
+        {
+            List<Namirnica> namirnice = new List<Namirnica>();
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "LoadNamirnice";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                namirnice.Add(new Namirnica
+                                {
+                                    IDNamirnica = (int)dr["IDNamirnica"],
+                                    Naziv = dr["Naziv"].ToString(),
+                                    tipNamirnice = FetchTipoviNamirnica().Find(x => x.IDTipNamirnice == (int)dr["TipNamirniceID"]).Naziv,
+                                    Kcal = (int)dr["Kcal"],
+                                    Kj = (int)dr["Kj"]
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return namirnice;
+        }
+        public void InsertNamirnica(Namirnica namirnica)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "InsertNamirnica";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (!FetchNamirnice().Contains(namirnica))
+                    {
+                        cmd.Parameters.Add("@naz", SqlDbType.VarChar).Value = namirnica.Naziv;
+                        cmd.Parameters.Add("@kj", SqlDbType.VarChar).Value = namirnica.Kj;
+                        cmd.Parameters.Add("@kcal", SqlDbType.VarChar).Value = namirnica.Kcal;
+                        cmd.Parameters.Add("@tipnamirniceid", SqlDbType.VarChar).Value = FetchTipoviNamirnica().Find(x => x.IDTipNamirnice == int.Parse(namirnica.tipNamirnice)).IDTipNamirnice;
+                        object value = cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+        public void UpdateNamirnica(Namirnica namirnica)
+        {
+            int sranje = FetchTipoviNamirnica().Find(x => x.Naziv == namirnica.tipNamirnice).IDTipNamirnice;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    if (!FetchNamirnice().Contains(namirnica))
+                    {
+                        cmd.CommandText = "UpdateNamirnica";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@naz", SqlDbType.VarChar).Value = namirnica.Naziv;
+                        cmd.Parameters.Add("@idnamirnica", SqlDbType.VarChar).Value = namirnica.IDNamirnica;
+                        cmd.Parameters.Add("@kj", SqlDbType.VarChar).Value = namirnica.Kj;
+                        cmd.Parameters.Add("@kcal", SqlDbType.VarChar).Value = namirnica.Kcal;
+                        cmd.Parameters.Add("@tipnamirniceid", SqlDbType.VarChar).Value = sranje;
+                        object value = cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+        public void DeleteNamirnica(Namirnica namirnica)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    if (!FetchNamirnice().Contains(namirnica))
+                    {
+                        try
+                        {
+                            cmd.CommandText = "DeleteNamirnica";
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add("@idnamirnica", SqlDbType.VarChar).Value = namirnica.IDNamirnica;
                             object value = cmd.ExecuteNonQuery();
                         }
                         catch (Exception)

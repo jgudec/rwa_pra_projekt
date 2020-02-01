@@ -95,6 +95,8 @@
     <Content Include="LogIn.aspx" />
     <Content Include="MainMenu.aspx" />
     <Content Include="Pages\Korisnici\ViewKorisnici.aspx" />
+    <Content Include="Pages\Namirnice\EditNamirnice.aspx" />
+    <Content Include="Pages\Namirnice\ViewNamirnice.aspx" />
     <Content Include="Pages\Obroci\EditObroci.aspx" />
     <Content Include="Pages\Obroci\ViewObroci.aspx" />
     <Content Include="Web.config" />
@@ -130,6 +132,20 @@
     </Compile>
     <Compile Include="Pages\Korisnici\ViewKorisnici.aspx.designer.cs">
       <DependentUpon>ViewKorisnici.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Namirnice\EditNamirnice.aspx.cs">
+      <DependentUpon>EditNamirnice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Namirnice\EditNamirnice.aspx.designer.cs">
+      <DependentUpon>EditNamirnice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Namirnice\ViewNamirnice.aspx.cs">
+      <DependentUpon>ViewNamirnice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Namirnice\ViewNamirnice.aspx.designer.cs">
+      <DependentUpon>ViewNamirnice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Obroci\EditObroci.aspx.cs">
       <DependentUpon>EditObroci.aspx</DependentUpon>

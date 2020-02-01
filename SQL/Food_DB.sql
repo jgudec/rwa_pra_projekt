@@ -175,3 +175,48 @@ go
 
 insert into Obrok(Naziv) values('Dorucak')
 go
+
+--AdminSite: Ingredient screens
+
+insert into TipNamirnice(Naziv) values('Mast')
+insert into TipNamirnice(Naziv) values('Ugljikohidrat')
+insert into TipNamirnice(Naziv) values('Protein')
+go
+
+insert into Namirnica(Naziv,TipNamirniceID) values('pileca prsa',3)
+go
+
+create proc LoadNamirnice
+as
+select * from Namirnica
+go
+
+create proc LoadTipoviNamirnica
+as
+select * from TipNamirnice
+go
+
+create proc InsertNamirnica
+@naz nvarchar(25),
+@kj nvarchar(25),
+@kcal nvarchar(25),
+@tipnamirniceid int
+as
+insert into Namirnica(Naziv,Kj,Kcal,TipNamirniceID) values(@naz,@kj,@kcal,@tipnamirniceid)
+go
+
+create proc UpdateNamirnica
+@naz nvarchar(25),
+@idnamirnica int,
+@kj nvarchar(25),
+@kcal nvarchar(25),
+@tipnamirniceid int
+as
+update Namirnica set Naziv=@naz,Kj=@kj,Kcal=@kcal,TipNamirniceID=@tipnamirniceid where IDNamirnica=@idnamirnica
+go
+
+create proc DeleteNamirnica
+@idnamirnica int
+as
+delete from Namirnica where IDNamirnica=@idnamirnica
+go

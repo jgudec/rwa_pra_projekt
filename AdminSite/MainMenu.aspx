@@ -16,7 +16,7 @@
                     <a class="waves-effect waves-light btn-large blue cust center meh" href="Pages/Obroci/ViewObroci.aspx">Obroci</a>
                 </div>
         <div class="col-12 col centered ">
-                   <a href="#" class="waves-effect waves-light btn-large blue buton meh ">Namirnice</a>
+                   <a href="Pages/Namirnice/ViewNamirnice.aspx" class="waves-effect waves-light btn-large blue buton meh ">Namirnice</a>
                    <a href="#" class="waves-effect waves-light btn-large blue buton meh">Mjerne Jedinice</a>
                 </div>
     </div>
