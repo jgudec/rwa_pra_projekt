@@ -1,0 +1,44 @@
+﻿body {
+}
+
+.meh{
+    width:15%;
+    margin:1% auto;
+}
+
+.mueh{
+    box-shadow:none;
+    margin-top:15%
+}
+
+.buton{
+    margin-left:5% !important;
+    margin-bottom:3% !important;
+}
+
+.modal{
+    height:45% !important;
+    max-height:45% !important;
+}
+
+.shorten{
+    width: 30% !important;
+    margin:auto !important;
+}
+
+
+.shortenB {
+    width: auto !important;
+    margin: auto !important;
+}
+
+.shortenBack {
+    width: 10% !important;
+    margin-left:0% !important;
+    margin-top:2% !important;
+}
+
+.margintop{
+    margin-top:1%
+}
+

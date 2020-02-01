@@ -85,6 +85,7 @@
     <Content Include="Content\CustCss\Base.css" />
     <Content Include="Content\CustCss\LogIn.css" />
     <Content Include="Content\CustCss\MainMenu.css" />
+    <Content Include="Content\CustCss\ViewObroci.css" />
     <Content Include="Content\materialize\css\materialize.css" />
     <Content Include="Content\materialize\css\materialize.min.css" />
     <Content Include="Content\materialize\js\materialize.js" />
@@ -94,6 +95,8 @@
     <Content Include="LogIn.aspx" />
     <Content Include="MainMenu.aspx" />
     <Content Include="Pages\Korisnici\ViewKorisnici.aspx" />
+    <Content Include="Pages\Obroci\EditObroci.aspx" />
+    <Content Include="Pages\Obroci\ViewObroci.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +130,20 @@
     </Compile>
     <Compile Include="Pages\Korisnici\ViewKorisnici.aspx.designer.cs">
       <DependentUpon>ViewKorisnici.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Obroci\EditObroci.aspx.cs">
+      <DependentUpon>EditObroci.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Obroci\EditObroci.aspx.designer.cs">
+      <DependentUpon>EditObroci.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Obroci\ViewObroci.aspx.cs">
+      <DependentUpon>ViewObroci.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Obroci\ViewObroci.aspx.designer.cs">
+      <DependentUpon>ViewObroci.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -139,3 +139,39 @@ create proc LoadKorisnici
 		as
 SELECT * from Korisnik
 go
+
+--AdminSite: Meal screens
+
+create proc LoadObroci
+as
+SELECT * from Obrok
+go
+
+create proc InsertObrok
+@naz nvarchar(25)
+as
+insert into Obrok(Naziv) values(@naz)
+go
+
+create proc ToggleObrok
+@idObrok int,
+@stat int
+as
+update Obrok set Dostupan=@stat where IDObrok=@idObrok
+go
+
+create proc UpdateObrok
+@naz nvarchar(25),
+@idobrok int
+as
+update Obrok set Naziv=@naz where IDObrok=@idobrok
+go
+
+create proc DeleteObrok
+@idobrok int
+as
+delete from Obrok where IDObrok=@idobrok
+go
+
+insert into Obrok(Naziv) values('Dorucak')
+go

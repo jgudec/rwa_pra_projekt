@@ -19,7 +19,7 @@ namespace DAL.Repo
 
         
 
-        //--------------------------------------------------------------------------
+        //------------------------------Korisnici-----------------------------
 
         public bool ValidateAdmin(string username, string pwd)
         {
@@ -79,6 +79,116 @@ namespace DAL.Repo
                 }
             }
             return korisnici;
+        }
+
+        //---------------Obroci---------------------------------
+
+        public List<Obrok> FetchObroci()
+        {
+            List<Obrok> obroci = new List<Obrok>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "LoadObroci";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                obroci.Add(new Obrok
+                                {
+                                    IDObrok = (int)dr["IDObrok"],
+                                    Naziv = dr["Naziv"].ToString(),
+                                    Dostupan = (bool)dr["Dostupan"]
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return obroci;
+        }
+
+        public void ToggleObrok(int iDObrok, int stat)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "ToggleObrok";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@idObrok", SqlDbType.VarChar).Value = iDObrok;
+                    cmd.Parameters.Add("@stat", SqlDbType.VarChar).Value = stat;
+                    object value = cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void InsertObrok(object text)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "InsertObrok";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (text.ToString() != String.Empty)
+                    {
+                        cmd.Parameters.Add("@naz", SqlDbType.VarChar).Value = text;
+                        object value = cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public void UpdateObrok(Obrok obrok)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    if (!FetchObroci().Contains(obrok))
+                    {
+                        cmd.CommandText = "UpdateObrok";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@naz", SqlDbType.VarChar).Value = obrok.Naziv;
+                        cmd.Parameters.Add("@idobrok", SqlDbType.VarChar).Value = obrok.IDObrok;
+                        object value = cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public void DeleteObrok(Obrok obrok)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    if (!FetchObroci().Contains(obrok))
+                    {
+                        try
+                        {
+                            cmd.CommandText = "DeleteObrok";
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add("@idobrok", SqlDbType.VarChar).Value = obrok.IDObrok;
+                            object value = cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    }
+                }
+            }
         }
     }
 }
