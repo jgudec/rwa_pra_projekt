@@ -332,5 +332,96 @@ namespace DAL.Repo
                 }
             }
         }
+
+        //---------------Mjerne jedinice---------------------------------
+
+        public List<MjJedinica> FetchMjJed()
+        {
+            List<MjJedinica> mjJedinice = new List<MjJedinica>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "LoadMjJedinice";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                mjJedinice.Add(new MjJedinica
+                                {
+                                    IDMjernaJedinica = (int)dr["IDMjernaJedinica"],
+                                    Naziv = dr["Naziv"].ToString()
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return mjJedinice;
+        }
+
+        public void InsertMjJed(string naziv)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    if (!FetchMjJed().Contains(FetchMjJed().Find(x => x.Naziv == naziv)))
+                    {
+                        cmd.CommandText = "InsertMjJedinicu";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@naz", SqlDbType.VarChar).Value = naziv;
+                        object value = cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+        public void DeleteMjJed(MjJedinica mjJed)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    if (!FetchMjJed().Contains(mjJed))
+                    {
+                        try
+                        {
+                            cmd.CommandText = "DeleteMjJedinicu";
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add("@idmjjed", SqlDbType.VarChar).Value = mjJed.IDMjernaJedinica;
+                            object value = cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+        public void UpdateMjJed(MjJedinica mjJed)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    if (!FetchMjJed().Contains(mjJed))
+                    {
+                        cmd.CommandText = "UpdateMjJedinicu";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@naz", SqlDbType.VarChar).Value = mjJed.Naziv;
+                        cmd.Parameters.Add("@idmjjed", SqlDbType.VarChar).Value = mjJed.IDMjernaJedinica;
+                        object value = cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
     }
 }

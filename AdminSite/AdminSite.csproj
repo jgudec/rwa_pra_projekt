@@ -95,6 +95,8 @@
     <Content Include="LogIn.aspx" />
     <Content Include="MainMenu.aspx" />
     <Content Include="Pages\Korisnici\ViewKorisnici.aspx" />
+    <Content Include="Pages\MjJedinice\EditMjJedinice.aspx" />
+    <Content Include="Pages\MjJedinice\ViewMjJedinice.aspx" />
     <Content Include="Pages\Namirnice\EditNamirnice.aspx" />
     <Content Include="Pages\Namirnice\ViewNamirnice.aspx" />
     <Content Include="Pages\Obroci\EditObroci.aspx" />
@@ -132,6 +134,20 @@
     </Compile>
     <Compile Include="Pages\Korisnici\ViewKorisnici.aspx.designer.cs">
       <DependentUpon>ViewKorisnici.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MjJedinice\EditMjJedinice.aspx.cs">
+      <DependentUpon>EditMjJedinice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MjJedinice\EditMjJedinice.aspx.designer.cs">
+      <DependentUpon>EditMjJedinice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MjJedinice\ViewMjJedinice.aspx.cs">
+      <DependentUpon>ViewMjJedinice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MjJedinice\ViewMjJedinice.aspx.designer.cs">
+      <DependentUpon>ViewMjJedinice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Namirnice\EditNamirnice.aspx.cs">
       <DependentUpon>EditNamirnice.aspx</DependentUpon>

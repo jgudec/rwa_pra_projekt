@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Korisnik.cs" />
+    <Compile Include="Model\MjJedinica.cs" />
     <Compile Include="Model\Namirnica.cs" />
     <Compile Include="Model\Obrok.cs" />
     <Compile Include="Model\TipNamirnice.cs" />

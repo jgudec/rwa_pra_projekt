@@ -220,3 +220,36 @@ create proc DeleteNamirnica
 as
 delete from Namirnica where IDNamirnica=@idnamirnica
 go
+
+--AdminSite: Measurement Unit screens
+
+insert into MjernaJedinica(Naziv) values('gram')
+go
+insert into MjernaJedinica(Naziv) values('dekagram')
+go
+insert into MjernaJedinica(Naziv) values('kilogram')
+go
+
+create proc LoadMjJedinice
+as
+SELECT * from MjernaJedinica
+go
+
+create proc InsertMjJedinicu
+@naz nvarchar(25)
+as
+insert into MjernaJedinica(Naziv) values(@naz)
+go
+
+create proc UpdateMjJedinicu
+@naz nvarchar(25),
+@idmjjed int
+as
+update MjernaJedinica set Naziv=@naz where IDMjernaJedinica=@idmjjed
+go
+
+create proc DeleteMjJedinicu
+@idmjjed int
+as
+delete from MjernaJedinica where IDMjernaJedinica=@idmjjed
+go

@@ -17,7 +17,7 @@
                 </div>
         <div class="col-12 col centered ">
                    <a href="Pages/Namirnice/ViewNamirnice.aspx" class="waves-effect waves-light btn-large blue buton meh ">Namirnice</a>
-                   <a href="#" class="waves-effect waves-light btn-large blue buton meh">Mjerne Jedinice</a>
+                   <a href="Pages/MjJedinice/ViewMjJedinice.aspx" class="waves-effect waves-light btn-large blue buton meh">Mjerne Jedinice</a>
                 </div>
     </div>
 </asp:Content>
