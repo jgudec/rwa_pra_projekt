@@ -94,6 +94,8 @@
     <Content Include="Global.asax" />
     <Content Include="LogIn.aspx" />
     <Content Include="MainMenu.aspx" />
+    <Content Include="Pages\Kombinacije\EditKombinacije.aspx" />
+    <Content Include="Pages\Kombinacije\ViewKombinacije.aspx" />
     <Content Include="Pages\Korisnici\ViewKorisnici.aspx" />
     <Content Include="Pages\MjJedinice\EditMjJedinice.aspx" />
     <Content Include="Pages\MjJedinice\ViewMjJedinice.aspx" />
@@ -127,6 +129,20 @@
     </Compile>
     <Compile Include="MainMenu.aspx.designer.cs">
       <DependentUpon>MainMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kombinacije\EditKombinacije.aspx.cs">
+      <DependentUpon>EditKombinacije.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kombinacije\EditKombinacije.aspx.designer.cs">
+      <DependentUpon>EditKombinacije.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kombinacije\ViewKombinacije.aspx.cs">
+      <DependentUpon>ViewKombinacije.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kombinacije\ViewKombinacije.aspx.designer.cs">
+      <DependentUpon>ViewKombinacije.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Korisnici\ViewKorisnici.aspx.cs">
       <DependentUpon>ViewKorisnici.aspx</DependentUpon>

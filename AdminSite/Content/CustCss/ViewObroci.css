@@ -17,8 +17,8 @@
 }
 
 .modal{
-    height:45% !important;
-    max-height:45% !important;
+    height:auto !important;
+
 }
 
 .shorten{
@@ -41,4 +41,3 @@
 .margintop{
     margin-top:1%
 }
-

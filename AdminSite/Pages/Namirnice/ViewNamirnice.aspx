@@ -7,9 +7,6 @@
     <!-- Compiled and minified JavaScript -->
     <script src="/Content/materialize/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> 
-    <%--Ovo trebas da prokleti modal proradi opet...--%>
-    <script src="/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="/Scripts/bootstrap.min.js"></script>
     <link href="/Content/CustCss/ViewObroci.css" rel="stylesheet" />
 </asp:Content>
 

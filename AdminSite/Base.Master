@@ -25,7 +25,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href='<%=ResolveUrl("~/MainMenu.aspx") %>'>Glavni Izbornik</a></li>
                         <li><a href='<%=ResolveUrl("~/Pages/Korisnici/ViewKorisnici.aspx") %>'>Korisnici</a></li>
-                        <li><a href="#">Kombinacije</a></li>
+                        <li><a href='<%=ResolveUrl("~/Pages/Kombinacije/ViewKombinacije.aspx") %>'>Kombinacije</a></li>
                         <li><a href='<%=ResolveUrl("~/Pages/Namirnice/ViewNamirnice.aspx") %>'>Namirnice</a></li>
                         <li><a href='<%=ResolveUrl("~/Pages/MjJedinice/ViewMjJedinice.aspx") %>'>Mjerne jedinice</a></li>
                         <li><a href='<%=ResolveUrl("~/Pages/Obroci/ViewObroci.aspx") %>'>Obroci</a></li>

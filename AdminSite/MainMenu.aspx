@@ -10,7 +10,7 @@
         </div>
         <div class="col-12 col centered ">
                     <a href="Pages/Korisnici/ViewKorisnici.aspx" class="waves-effect waves-light btn-large blue buton meh">Korisnici</a>
-                    <a href="#" class="waves-effect waves-light btn-large blue buton meh">Kombinacije</a>
+                    <a href="Pages/Kombinacije/ViewKombinacije.aspx" class="waves-effect waves-light btn-large blue buton meh">Kombinacije</a>
                 </div>
         <div class="col-12 col centered ">
                     <a class="waves-effect waves-light btn-large blue cust center meh" href="Pages/Obroci/ViewObroci.aspx">Obroci</a>
