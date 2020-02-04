@@ -47,5 +47,34 @@ namespace PublicSite.Controllers
             ViewBag.Ime = k.Ime + " " + k.Prezime;
             return View();
         }
+
+        [AllowAnonymous]
+        public ActionResult LogIn(LogInViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Content("Bad request");
+            }
+            foreach (var k in SqlRepo.Instance.FetchKorisnici())
+            {
+                if (k.KorisnickoIme == model.Username && k.Lozinka == model.Password)
+                {
+                    SqlRepo.Instance.SaveLoggedInKorisnik(model.Username);
+                    FormsAuthentication.SetAuthCookie(model.Username, false);
+                    return RedirectToAction("MainMenu", "Home");
+                }
+            }
+            TempData["showModal"] = "login";
+            TempData["errorMessage"] = $"Podaci nisu ispravni";
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult LogOff()
+        {
+            SqlRepo.Instance.LogOutKorisnik();
+            // Obriši cookie i vrati korisnika na landing page.
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

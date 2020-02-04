@@ -18,8 +18,8 @@ namespace DAL.Model
         public char Spol { get; set; }
         public int TipDijabetesa { get; set; }
         public int FizickaAktivnost { get; set; }
-        public int Visina { get; set; }
-        public int Tezina { get; set; }
-        public int BMI { get; set; }
+        public double Visina { get; set; }
+        public double Tezina { get; set; }
+        public double BMI { get; set; }
     }
 }

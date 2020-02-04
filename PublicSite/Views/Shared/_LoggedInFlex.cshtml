@@ -1,0 +1,28 @@
+﻿@using System.Web.Security
+@if (Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+{
+    <li><p class="center">Molimo vas da se prijavite!</p></li>
+
+}
+else
+{
+    using (Html.BeginForm("LogOff", "Home", FormMethod.Post, new { id = "logOutView" }))
+    {
+        <li><a href="@Url.Action("Index", "Home")"><i class="material-icons">home</i>Početna stranica</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Jelovnici</a></li>
+        <li><a href="#"><i class="material-icons">restaurant_menu</i>Pregled Jelovnika</a></li>
+        <li><a href="#"><i class="material-icons">room_service</i>Kreiranje Jelovnika</a></li>
+
+
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Ostalo</a></li>
+        <li><a href="#"><i class="material-icons">settings</i>Postavke</a></li>
+
+        <li><div class="divider"></div></li>
+
+        <li><a class="subheader">Korisnički račun</a></li>
+        <li><a href="javascript:document.getElementById('logOutView').submit()"><i class="material-icons">exit_to_app</i>Odjava</a></li>
+
+    }
+}

@@ -66,6 +66,7 @@ namespace DAL.Repo
                                         IDKorisnik = (int)dr["IDKorisnik"],
                                         Ime = dr["Ime"].ToString(),
                                         Prezime = dr["Prezime"].ToString(),
+                                        Lozinka = dr["Pwd"].ToString(),
                                         Spol = dr["Spol"].ToString()[0],
                                         FizickaAktivnost = (int)dr["FizickaAktivnost"],
                                         TipDijabetesa = (int)dr["TipDijabetesa"],
@@ -75,12 +76,24 @@ namespace DAL.Repo
                                         KorisnickoIme = dr["KorisnickoIme"].ToString(),
                                         DOB = DateTime.Parse(dr["DOB"].ToString()),
                                         BMI = (int)dr["BMI"]
+
                                     });
                                 }
                             }
                         }
                     }
                 }
+            }
+            korisnici = CalculateBMI(korisnici);
+            return korisnici;
+        }
+
+        private List<Korisnik> CalculateBMI(List<Korisnik> korisnici)
+        {
+            foreach (Korisnik korisnik in korisnici)
+            {
+                double faktor = korisnik.Visina / 100;
+                korisnik.BMI = Math.Round(korisnik.Tezina / (faktor * faktor), 2);
             }
             return korisnici;
         }
@@ -119,6 +132,12 @@ namespace DAL.Repo
         {
             return LoggedInKorisnik;
         }
+
+        public void LogOutKorisnik()
+        {
+            LoggedInKorisnik = null;
+        }
+
 
         //---------------Obroci---------------------------------
 
