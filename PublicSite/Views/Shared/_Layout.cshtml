@@ -1,0 +1,64 @@
+﻿@using PublicSite.Models.ViewModels
+@model RegistrationViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/MyDrawables/ic_launcher.ico" rel="shortcut icon" type="image/x-icon" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/Content/materialize.css" rel="stylesheet" />
+    <link href="~/Content/MyCss/Layout.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="disbg">
+    <nav class="navbar-fixed-top blue">
+        <div class="nav-wrapper ">
+            <a href="#" data-target="slide-out" class="brand-logo sidenav-trigger show-on-large"><i class="material-icons">menu</i> @ViewBag.Title</a>
+
+        </div>
+    </nav>
+    <ul id="slide-out" class="sidenav navbar-fixed-top">
+        <li>
+            <div class="user-view">
+                <div class="background disbg">
+                    <img src="~/Content/MyDrawables/bg2.jpg" style='height: 100%; width: 100%;' />
+                </div>
+                <img class="circle" src="~/Content/MyDrawables/the_one.jpg" />
+                <span class="white-text name">@Html.Label((string)ViewBag.Ime + " " + (string)ViewBag.Prezime, new { @style = "font-size: 16px; color:#ffffff;" })</span>
+                <span class="white-text email">Ponosan korisnik</span>
+            </div>
+        </li>
+
+
+        @*@Html.Partial("_LoggedInFlex")*@
+    </ul>
+    <div class="container body-content card">
+        <div class="card-content">@RenderBody()</div>
+        <hr />
+        <footer class="center card-footer">
+            <p>&copy; @DateTime.Now.Year - Algebra</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

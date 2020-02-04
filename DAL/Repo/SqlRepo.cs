@@ -16,6 +16,8 @@ namespace DAL.Repo
 
         private TipNamirnice meh = new TipNamirnice();
 
+        private Korisnik LoggedInKorisnik;
+
         private static readonly Lazy<SqlRepo> lazy = new Lazy<SqlRepo>(() => new SqlRepo());
         public static SqlRepo Instance { get { return lazy.Value; } }
 
@@ -81,6 +83,41 @@ namespace DAL.Repo
                 }
             }
             return korisnici;
+        }
+
+        public void InsertKorisnik(string username, string ime, string prezime, DateTime dob, char spol, int tipDijabetesa, int fizickaAktivnost, double visina, double tezina, string email, string pwd)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "InsertKorisnik";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
+                    cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                    cmd.Parameters.Add("@pwd", SqlDbType.VarChar).Value = pwd;
+                    cmd.Parameters.Add("@ime", SqlDbType.VarChar).Value = ime;
+                    cmd.Parameters.Add("@prezime", SqlDbType.VarChar).Value = prezime;
+                    cmd.Parameters.Add("@dob", SqlDbType.DateTime).Value = dob;
+                    cmd.Parameters.Add("@spol", SqlDbType.VarChar).Value = spol;
+                    cmd.Parameters.Add("@tipDijabetesa", SqlDbType.Int).Value = tipDijabetesa;
+                    cmd.Parameters.Add("@fizickaAktivnost", SqlDbType.Int).Value = fizickaAktivnost;
+                    cmd.Parameters.Add("@visina", SqlDbType.Int).Value = visina;
+                    cmd.Parameters.Add("@tezina", SqlDbType.Int).Value = tezina;
+                    object value = cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void SaveLoggedInKorisnik(string username)
+        {
+            LoggedInKorisnik = FetchKorisnici().Find(k => k.KorisnickoIme == username);
+        }
+
+        public Korisnik FetchLoggedInKorisnik()
+        {
+            return LoggedInKorisnik;
         }
 
         //---------------Obroci---------------------------------

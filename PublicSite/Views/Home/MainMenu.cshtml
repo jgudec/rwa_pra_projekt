@@ -1,0 +1,26 @@
+﻿@using PublicSite.Models.ViewModels
+@model RegistrationViewModel
+
+@{
+    ViewBag.Title = "Glavni Izbornik";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="center">
+    @using (Html.BeginForm("MainMenu", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p id="errorMessage"></p>
+        <div class="form-group">
+            @Html.Label("Dobrodošli, " + (string)ViewBag.Ime + "!", new { @style = "font-size: 30px;" })
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Izrada jelovnika", "ViewMenus", null, new { @class = "waves-effect waves-light btn modal-trigger pink", @style = " margin-bottom:3%" })
+            <br />
+            @Html.ActionLink("Pregled jelovnika", "CreateMenus", null, new { @class = "waves-effect waves-light btn modal-trigger pink" })
+        </div>
+    }
+</div>
+
+

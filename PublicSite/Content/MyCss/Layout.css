@@ -1,0 +1,10 @@
+﻿body {
+}
+
+.disbg {
+    background-image: url(../MyDrawables/bg.png)
+}
+
+.marzin{
+    margin-left:35% !important;
+}

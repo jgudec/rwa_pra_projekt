@@ -253,3 +253,50 @@ create proc DeleteMjJedinicu
 as
 delete from MjernaJedinica where IDMjernaJedinica=@idmjjed
 go
+
+--PublicSite
+
+create proc InsertKorisnik
+@username nvarchar(50),
+@email nvarchar(25),
+@pwd nvarchar(25),
+@ime nvarchar(50),
+@prezime nvarchar(25),
+@dob date, 
+@spol nvarchar(25),
+@tipDijabetesa int,
+@fizickaAktivnost int,
+@visina int,
+@tezina int
+as
+insert into Korisnik(KorisnickoIme,Email,Pwd,Ime,Prezime,DOB,Spol,TipDijabetesa,FizickaAktivnost,Visina,Tezina) 
+values(@username,@email,@pwd,@ime,@prezime,@dob,@spol,@tipDijabetesa,@fizickaAktivnost,@visina,@tezina)
+go
+
+create proc UpdateKorisnik
+@korisnickoIme nvarchar(50),
+@email nvarchar(25),
+@ime nvarchar(50),
+@prezime nvarchar(25),
+@dob date, 
+@spol nvarchar(25),
+@tipDijabetesa int,
+@fizickaAktivnost int,
+@visina int,
+@tezina int,
+@bmi decimal 
+as
+update Korisnik
+set 
+	Ime=@ime,
+	Prezime=@prezime,
+	Email=@email,
+	DOB=@dob,
+	Spol=@spol,
+	TipDijabetesa=@tipDijabetesa,
+	FizickaAktivnost=@fizickaAktivnost,
+	Visina=@visina,
+	Tezina=@tezina,
+	BMI=@bmi
+where KorisnickoIme=@korisnickoIme
+go

@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Glavna Stranica";
+}
+
+    <div class="center">
+        <h1>Dobrodošli!</h1>
+        <p class="lead ">DBFood je besplatna web aplikacija pomoću koje<br />osobe sa dijabetesom mogu planirati dnevni unos hranjivih tvari.</p>
+        <link href="~/Content/MyCss/Index.css" rel="stylesheet" />
+    </div>
+
+    <div class="row center">
+        <br />
+        <a class="waves-effect waves-light btn modal-trigger pink" href="#logInModal">Prijava</a>
+        <br />
+        <br />
+        <h4>Nemaš račun?</h4>
+        <br />
+        <a class="waves-effect waves-light btn modal-trigger pink" href="@Url.Action("Register", "Home")">Registriraj se!</a>
+
+        <!-- Registration Modal -->
+        <div id="logInModal" class="modal">
+            @*@Html.Partial("LogInView")*@
+        </div>
+
+        
+
+
+    </div>

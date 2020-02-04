@@ -1,0 +1,79 @@
+﻿@using PublicSite.Models.ViewModels
+@model RegistrationViewModel
+
+@{Layout = "~/Views/Shared/_Layout.cshtml";}
+
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <link href="~/Content/Site.css" rel="stylesheet" />
+        <h2 class="center modal-header">Registriracija</h2>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p id="errorMessage"></p>
+        <div class="modal-body marzin">
+            <div class="form-group col-12">
+                @Html.TextBoxFor(m => m.KorisnickoIme, htmlAttributes: new { placeholder = "Korisničko ime", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.KorisnickoIme, "", new { @class = "error" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Email, htmlAttributes: new { placeholder = "E-mail ", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "error" })
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.Lozinka, new { placeholder = "Lozinka", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Lozinka, "", new { @class = "error" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Ime, htmlAttributes: new { placeholder = "Ime", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Ime, "", new { @class = "error" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Prezime, htmlAttributes: new { placeholder = "Prezime ", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Prezime, "", new { @class = "error" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.DOB, htmlAttributes: new { placeholder = "Datum rođenja ", type = "date", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "error" })
+            </div>
+            <div class="form-group">
+                @Html.Label(expression: "Spol", labelText: "Spol: ", htmlAttributes: new { @class = "text-info" })<br />
+                @Html.DropDownList("Spol", optionLabel: "--- Odaberite Spol ---", selectList: new List<SelectListItem>()
+                {
+                    new SelectListItem { Text="Musko", Value="M"},
+                    new SelectListItem { Text="Zensko", Value="Z"}
+                }, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.Label(expression: "TipDijabetesa", labelText: "Tip Dijabetesa: ", htmlAttributes: new { @class = "text-info" })<br />
+                @Html.DropDownList("TipDijabetesa", optionLabel: "--- Odaberite tip dijabetesa ---", selectList: new List<SelectListItem>()
+                {
+                    new SelectListItem { Text="1", Value="1"},
+                    new SelectListItem { Text="2", Value="2"}
+                }, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.Label(expression: "FizickaAktivnost", labelText: "Razina fizicke aktivnosti: ", htmlAttributes: new { @class = "text-info" })<br />
+                @Html.DropDownList("FizickaAktivnost", optionLabel: "--- Odaberite razinu fizicke aktivnosti ---", selectList: new List<SelectListItem>()
+                {
+                    new SelectListItem { Text="Slaba", Value="1"},
+                    new SelectListItem { Text="Umjerena", Value="2"},
+                    new SelectListItem { Text="Intezivna", Value="3"}
+                }, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Visina, htmlAttributes: new { placeholder = "Visina ", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Visina, "", new { @class = "error" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Tezina, htmlAttributes: new { placeholder = "Tezina ", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Tezina, "", new { @class = "error" })
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input id="btnLogin" type="submit" class="btn blue" value="Registracija" />
+        </div>
+    }
+    @Scripts.Render("~/bundles/jqueryval")
+</div>
