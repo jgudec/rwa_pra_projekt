@@ -175,6 +175,8 @@
     <Content Include="Views\Shared\_LoggedInFlex.cshtml" />
     <Content Include="Views\Home\LoginView.cshtml" />
     <Content Include="Views\Home\Settings.cshtml" />
+    <Content Include="Views\Home\ViewMenus.cshtml" />
+    <Content Include="Views\Home\EditMenus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

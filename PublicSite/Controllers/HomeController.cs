@@ -20,7 +20,11 @@ namespace PublicSite.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (SqlRepo.Instance.FetchLoggedInKorisnik() != null)
+            {
+                return RedirectToAction("MainMenu", "Home");
+            }
+            else return View();
         }
 
         [HttpGet]
@@ -127,6 +131,16 @@ namespace PublicSite.Controllers
             SqlRepo.Instance.SaveLoggedInKorisnik(k.KorisnickoIme);
             return RedirectToAction("MainMenu", "Home");
 
+        }
+
+        public ActionResult ViewMenus()
+        {
+            return View();
+        }
+
+        public ActionResult EditMenus()
+        {
+            return View();
         }
     }
 }

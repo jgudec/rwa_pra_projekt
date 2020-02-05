@@ -49,7 +49,7 @@ namespace PublicSite.Models.ViewModels
 
         public int TipDijabetesa { get; set; }
 
-        public int FizickaAktivnost { get; set; }
+        public int FizickaAktivnost { get; set; } = 1;
 
         [Required(ErrorMessage = "Polje je obavezno")]
         [Display(Name = "Visina(cm)")]
