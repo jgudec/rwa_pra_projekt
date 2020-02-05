@@ -37,8 +37,10 @@ namespace PublicSite.Models.ViewModels
 
         [Required(ErrorMessage = "Polje je obavezno")]
         [Display(Name = "Datum rođenja")]
+		[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DefaultValue(true)]
         public DateTime DOB { get; set; }
-
 
 
         [Display(Name = "Spol")]

@@ -98,6 +98,13 @@ namespace DAL.Repo
             return korisnici;
         }
 
+        private double CalculateBMI(double tezina, double visina)
+        {
+            double faktor = visina / 100;
+            double BMI = Math.Round((tezina / (faktor * faktor)), 2);
+            return BMI;
+        }
+
         public void InsertKorisnik(string username, string ime, string prezime, DateTime dob, char spol, int tipDijabetesa, int fizickaAktivnost, double visina, double tezina, string email, string pwd)
         {
             using (SqlConnection con = new SqlConnection(cs))
@@ -136,6 +143,36 @@ namespace DAL.Repo
         public void LogOutKorisnik()
         {
             LoggedInKorisnik = null;
+        }
+
+        public void UpdateKorisnik(string korisnickoIme, string ime, string prezime, DateTime dob, char spol, int tipDijabetesa, int fizickaAktivnost, double visina, double tezina, string email, string lozinka, double bmi)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                bmi = CalculateBMI(tezina, visina);
+                con.Open();
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    if (!FetchKorisnici().Contains(LoggedInKorisnik))
+                    {
+                        cmd.CommandText = "UpdateKorisnik";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@korisnickoIme", SqlDbType.VarChar).Value = korisnickoIme;
+                        cmd.Parameters.Add("@ime", SqlDbType.VarChar).Value = ime;
+                        cmd.Parameters.Add("@prezime", SqlDbType.VarChar).Value = prezime;
+                        cmd.Parameters.Add("@dob", SqlDbType.VarChar).Value = dob;
+                        cmd.Parameters.Add("@spol", SqlDbType.VarChar).Value = spol;
+                        cmd.Parameters.Add("@tipDijabetesa", SqlDbType.VarChar).Value = tipDijabetesa;
+                        cmd.Parameters.Add("@fizickaAktivnost", SqlDbType.VarChar).Value = fizickaAktivnost;
+                        cmd.Parameters.Add("@visina", SqlDbType.VarChar).Value = visina;
+                        cmd.Parameters.Add("@tezina", SqlDbType.VarChar).Value = tezina;
+                        cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                        cmd.Parameters.Add("@lozinka", SqlDbType.VarChar).Value = lozinka;
+                        cmd.Parameters.Add("@bmi", SqlDbType.VarChar).Value = bmi;
+                        object value = cmd.ExecuteNonQuery();
+                    }
+                }
+            }
         }
 
 

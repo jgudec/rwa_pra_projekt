@@ -1,0 +1,122 @@
+﻿@using PublicSite.Models.ViewModels
+@model RegistrationViewModel
+
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <link href="~/Content/Site.css" rel="stylesheet" />
+        <h2 class="center modal-header">Postavke</h2>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p id="errorMessage"></p>
+        <div class="modal-body paddingsmol">
+            @Html.LabelFor(m => m.IDKorisnik, new { @class = "hidden" })
+            <div class="form-group">
+                @Html.Label(Model.KorisnickoIme, new { @style = "font-size: 30px;" })
+                @Html.TextBoxFor(m => m.KorisnickoIme, htmlAttributes: new { @class = "form-control hidden" })
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email)
+                            @Html.TextBoxFor(m => m.Email, htmlAttributes: new { placeholder = "E-mail ", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "error" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <strong>@TempData["Message"]</strong>
+                           
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Ime)
+                            @Html.TextBoxFor(m => m.Ime, htmlAttributes: new { placeholder = "Ime", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Ime, "", new { @class = "error" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Prezime)
+                            @Html.TextBoxFor(m => m.Prezime, htmlAttributes: new { placeholder = "Prezime ", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Prezime, "", new { @class = "error" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DOB)
+                            @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @value = Model.DOB })
+                            @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "error" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Spol)
+                            @Html.DropDownListFor(m => m.Spol, optionLabel: "--- Odaberite Spol ---", selectList: new List<SelectListItem>()
+                            {
+                                new SelectListItem { Text="Musko", Value="M"},
+                                new SelectListItem { Text="Zensko", Value="Z"}
+                            }, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.TipDijabetesa)
+                            @Html.DropDownListFor(m => m.TipDijabetesa, optionLabel: "--- Odaberite tip dijabetesa ---", selectList: new List<SelectListItem>()
+                            {
+                                new SelectListItem { Text="1", Value="1"},
+                                new SelectListItem { Text="2", Value="2"}
+                            }, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FizickaAktivnost)
+                            @Html.DropDownListFor(m => m.FizickaAktivnost, optionLabel: "--- Odaberite razinu fizicke aktivnosti ---", selectList: new List<SelectListItem>()
+                            {
+                                new SelectListItem { Text="Niska", Value="1"},
+                                new SelectListItem { Text="Umjerena", Value="2"},
+                                new SelectListItem { Text="Visoka", Value="3"}
+                            }, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Visina)
+                            @Html.TextBoxFor(m => m.Visina, htmlAttributes: new { placeholder = "Visina ", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Visina, "", new { @class = "error" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Tezina)
+                            @Html.TextBoxFor(m => m.Tezina, htmlAttributes: new { placeholder = "Tezina ", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Tezina, "", new { @class = "error" })
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <input id="btnLogin" type="submit" class="btn blue" value="Spremi" />
+        </div>
+    }
+    @Scripts.Render("~/bundles/jqueryval")
+</div>
+
