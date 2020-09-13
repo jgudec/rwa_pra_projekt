@@ -71,11 +71,11 @@ namespace DAL.Repo
                                         FizickaAktivnost = (int)dr["FizickaAktivnost"],
                                         TipDijabetesa = (int)dr["TipDijabetesa"],
                                         Email = dr["Email"].ToString(),
-                                        Visina = (int)dr["Visina"],
-                                        Tezina = (int)dr["Tezina"],
+                                        Visina = Convert.ToDouble(dr["Visina"]),
+                                        Tezina = Convert.ToDouble(dr["Tezina"]),
                                         KorisnickoIme = dr["KorisnickoIme"].ToString(),
                                         DOB = DateTime.Parse(dr["DOB"].ToString()),
-                                        BMI = (int)dr["BMI"]
+                                        BMI = Convert.ToDouble(dr["BMI"])
 
                                     });
                                 }
@@ -349,8 +349,8 @@ namespace DAL.Repo
                                     IDNamirnica = (int)dr["IDNamirnica"],
                                     Naziv = dr["Naziv"].ToString(),
                                     tipNamirnice = FetchTipoviNamirnica().Find(x => x.IDTipNamirnice == (int)dr["TipNamirniceID"]).Naziv,
-                                    Kcal = (int)dr["Kcal"],
-                                    Kj = (int)dr["Kj"]
+                                    Kcal = dr["Kcal"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Kcal"]),
+                                    Kj = dr["Kj"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Kj"])
                                 });
                             }
                         }

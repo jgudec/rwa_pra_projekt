@@ -81,24 +81,24 @@ namespace PublicSite.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Settings()
-        {
-            Korisnik k = SqlRepo.Instance.FetchLoggedInKorisnik();
-            model.IDKorisnik = k.IDKorisnik;
-            model.Email = k.Email;
-            model.KorisnickoIme = k.KorisnickoIme;
-            model.Lozinka = k.Lozinka;
-            model.Ime = k.Ime;
-            model.Prezime = k.Prezime;
-            model.DOB = k.DOB;
-            model.Spol = k.Spol;
-            model.TipDijabetesa = k.TipDijabetesa;
-            model.Visina = k.Visina;
-            model.Tezina = k.Tezina;
+        //public ActionResult Settings()
+        //{
+        //    Korisnik k = SqlRepo.Instance.FetchLoggedInKorisnik();
+        //    model.IDKorisnik = k.IDKorisnik;
+        //    model.Email = k.Email;
+        //    model.KorisnickoIme = k.KorisnickoIme;
+        //    model.Lozinka = k.Lozinka;
+        //    model.Ime = k.Ime;
+        //    model.Prezime = k.Prezime;
+        //    model.DOB = k.DOB;
+        //    model.Spol = k.Spol;
+        //    model.TipDijabetesa = k.TipDijabetesa;
+        //    model.Visina = k.Visina;
+        //    model.Tezina = k.Tezina;
 
-            ViewData.Model = model;
-            return View();
-        }
+        //    ViewData.Model = model;
+        //    return View();
+        //}
 
         public ActionResult Settings(Korisnik k)
         {
@@ -126,7 +126,7 @@ namespace PublicSite.Controllers
             }
             else
             {
-                SqlRepo.Instance.UpdateKorisnik(k.KorisnickoIme, k.Ime, k.Prezime, k.DOB, k.Spol, k.TipDijabetesa, k.FizickaAktivnost, k.Visina, k.Tezina, k.Email, k.BMI);
+                SqlRepo.Instance.UpdateKorisnik(k.KorisnickoIme, k.Ime, k.Prezime, k.DOB, k.Spol, k.TipDijabetesa, k.FizickaAktivnost, k.Visina, k.Tezina, k.Email,k.Lozinka, k.BMI);
             }
             SqlRepo.Instance.SaveLoggedInKorisnik(k.KorisnickoIme);
             return RedirectToAction("MainMenu", "Home");

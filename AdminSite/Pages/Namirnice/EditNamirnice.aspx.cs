@@ -48,7 +48,7 @@ namespace AdminSite.Pages.Namirnice
 
         private void SetEdit()
         {
-            IDNamirnica = int.Parse(ddlNamirnice.SelectedValue);
+            IDNamirnica = ddlNamirnice.SelectedValue == null ? 1 : int.Parse(ddlNamirnice.SelectedValue);
             namirnica = namirnice.Find(x => x.IDNamirnica == IDNamirnica);
             tbNaziv.Text = namirnica.Naziv.ToString();
             tbKcal.Text = namirnica.Kcal.ToString();
